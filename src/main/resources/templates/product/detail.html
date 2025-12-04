@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品詳細</title>
+</head>
+<body>
+
+<h1 th:text="${product.productName}"></h1>
+
+<p>メーカー：<span th:text="${product.makerName}"></span></p>
+<p>価格：<span th:text="${product.price}"></span> 円</p>
+
+<form th:action="@{/cart/add}" method="post">
+    <input type="hidden" name="productId" th:value="${product.productId}">
+    <button type="submit">カートに入れる</button>
+</form>
+
+
+
+<a th:href="@{/products}">一覧へ戻る</a>
+
+</body>
+</html>
+

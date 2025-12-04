@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>購入確認</title>
+</head>
+<body>
+
+<h1>購入内容確認</h1>
+
+<p>名前：<span th:text="${name}"></span></p>
+<p>住所：<span th:text="${address}"></span></p>
+<p>アパート名：<span th:text="${apartment}"></span></p>
+<p>カード番号：<span th:text="${card}"></span></p>
+<p>合計金額：<span th:text="${total}"></span> 円</p>
+
+<form th:action="@{/purchase/complete}" method="post">
+    <button type="submit">購入確定</button>
+</form>
+
+</body>
+</html>

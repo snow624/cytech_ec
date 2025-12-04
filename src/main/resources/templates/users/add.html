@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザー登録</title>
+</head>
+<body>
+<h1>ユーザー登録</h1>
+
+<form th:action="@{/users/add}" method="post">
+
+    名前：<input type="text" name="userName"><br><br>
+    フリガナ：<input type="text" name="userNameKana"><br><br>
+    メール：<input type="email" name="email"><br><br>
+    電話番号：<input type="text" name="phone"><br><br>
+    住所：<input type="text" name="userAddress"><br><br>
+    パスワード：<input type="text" name="passwords"><br><br>
+
+    <button type="submit">登録</button>
+
+</form>
+
+<br>
+<a th:href="@{/users}">一覧へ戻る</a>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>購入情報入力</title>
+</head>
+<body>
+
+<h1>購入情報入力</h1>
+
+<form th:action="@{/purchase/confirm}" method="post">
+
+    <div>
+        名前：
+        <input type="text" name="name" required>
+    </div>
+    <br>
+
+    <div>
+        住所：
+        <input type="text" name="address" required>
+    </div>
+    <br>
+
+    <div>
+        アパート名：
+        <input type="text" name="apartment">
+    </div>
+    <br>
+
+    <div>
+        カード番号：
+        <input type="text" name="card" required>
+    </div>
+    <br>
+
+    <button type="submit">確認画面へ</button>
+</form>
+
+</body>
+</html>
