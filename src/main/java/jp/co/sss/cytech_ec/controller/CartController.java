@@ -169,7 +169,7 @@ public class CartController {
             return "redirect:/cart";
         }
 
-        // 今回は「1商品想定」
+        // 「1商品想定」
         CartItem item = cart.get(0);
 
         PurchaseForm form = new PurchaseForm();
@@ -181,31 +181,5 @@ public class CartController {
         return "redirect:/purchase";
     }
     
-//    カート詳細画面
-    
-    @GetMapping("/cart/confirm")
-    public String showCartConfirm(HttpSession session, Model model) {
-
-        List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
-
-        if (cart == null || cart.isEmpty()) {
-            return "redirect:/cart";
-        }
-
-        int subtotal = 0;
-        for (CartItem item : cart) {
-            subtotal += item.getProduct().getPrice() * item.getQuantity();
-        }
-        int total = (int)(subtotal * 1.1);
-
-        model.addAttribute("cart", cart);
-        model.addAttribute("subtotal", subtotal);
-        model.addAttribute("total", total);
-
-        return "cart_confirm";
-    }
-
-
-
 
 }

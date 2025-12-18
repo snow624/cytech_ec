@@ -278,7 +278,7 @@ public class ProductController {
                    " " + form.getCity() + " " + form.getDetail();
      } else {
          Address addr = addressRepository.findById(form.getAddressId()).orElse(null);
-         address = addr.fullAddress();  // fullAddress() を Address に作る
+         address = addr.fullAddress(); 
      }
 
      // 値を渡す
@@ -332,7 +332,7 @@ public class ProductController {
 if (form.getCardId() != null && form.getCardId() == 0) {
 
    Card newCard = new Card();
-   newCard.setUser(loginUser);   // ★ これが無いと保存されない
+   newCard.setUser(loginUser);  
    newCard.setCardNumber(form.getCardNumber());
    newCard.setExpiryMonth(form.getExpiryMonth());
    newCard.setExpiryYear(form.getExpiryYear());
@@ -423,7 +423,7 @@ if (form.getCardId() != null && form.getCardId() == 0) {
         int subtotal = product.getPrice() * quantity;
         int taxIncluded = (int) (subtotal * 1.1);
 
-        // ★ ここで PurchaseForm に商品情報をセットしておく
+        //商品情報セット
         PurchaseForm form = new PurchaseForm();
         form.setProductId(productId);
         form.setQuantity(quantity);
