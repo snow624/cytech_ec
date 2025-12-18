@@ -61,7 +61,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 		    <input type="hidden" name="productId" th:value="${product.productId}">
 		    <input type="hidden" name="quantity" id="singleBuyQuantity">
 		    <input type="hidden" name="directBuy" value="true">
-		    <div class="btn-wrap"><button type="submit" class="single-buy-btn">今すぐ購入</button></div> 
+		    <div class="btn-wrap"><button type="submit" class="single-buy-btn">単品購入</button></div> 
 		</form>
 
 		<!-- 外部JS -->
@@ -101,7 +101,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 								<a th:href="@{/reviews/new(productId=${product.productId})}">		
 								<div class="btn-wrap">
-									    <button type="submit" class="new-btn">口コミを投稿する</button>
+									    <button type="submit" class="add-btn">口コミを投稿する</button>
 								</div>
 								</a>
 								

@@ -97,12 +97,15 @@
 
   <!-- 右：サイドバー -->
   <aside class="cart-sidebar">
+	<div th:if="${cart != null and !#lists.isEmpty(cart)}">
+	<p>商品点数：<span th:text="${totalQuantity}"></span> 点</p>
+	</div>
 	
       <p>小計：¥<span th:text="${subtotal}"></span></p>
       <p>合計（税込）：¥<span th:text="${total}"></span></p>
 
       <form th:action="@{/purchase}" method="get">
-          <div class="btn-wrap"><button class="new-btn">購入に進む</button></div>
+          <div class="btn-wrap"><button class="new-btn">レジに進む</button></div>
       </form>
   </aside>
 

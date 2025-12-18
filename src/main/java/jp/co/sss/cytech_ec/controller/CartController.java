@@ -54,7 +54,7 @@ public class CartController {
             }
         }
 
-        // 新規追加（★ここが今回のポイント）
+        // 新規追加
         CartItem newItem = new CartItem(product, quantity);
         cart.add(newItem);
 
@@ -82,11 +82,36 @@ public class CartController {
 
         session.setAttribute("cart", cart);
         
-    
-
         return "redirect:/cart";
     }
     
+    @GetMapping("/cart/confirm")
+    public String showCartConfirm(HttpSession session, Model model) {
+
+        List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
+
+        if (cart == null || cart.isEmpty()) {
+            return "redirect:/cart";
+        }
+
+        int subtotal = 0;
+        int totalQuantity = 0;
+
+        for (CartItem item : cart) {
+            subtotal += item.getProduct().getPrice() * item.getQuantity();
+            totalQuantity += item.getQuantity();
+        }
+
+        int total = (int) (subtotal * 1.1);
+
+        model.addAttribute("cart", cart);
+        model.addAttribute("subtotal", subtotal);
+        model.addAttribute("total", total);
+        model.addAttribute("totalQuantity", totalQuantity); // ★ 追加
+
+        return "cart_confirm";
+    }
+
     
 //カート内数量変更
     @PostMapping("/cart/update")
@@ -120,14 +145,18 @@ public class CartController {
         List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
 
         int total = 0;
+        int totalQuantity = 0;
+        
         if (cart != null) {
             for (CartItem item : cart) {
                 total += item.getSubtotal();
+                totalQuantity += item.getQuantity();
             }
         }
 
         model.addAttribute("cart", cart);
         model.addAttribute("total", total);
+        model.addAttribute("totalQuantity", totalQuantity);
 
         return "cart";
     }

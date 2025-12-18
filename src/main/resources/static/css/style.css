@@ -325,6 +325,12 @@ justify-content: center;
 	margin:20px 0;
 }
 
+.reviews-box h2{
+	background-color: #f3f7ff;
+	border-radius: 8px;
+	padding: 10px 20px;
+}
+
 /*　---------------------　*/
 /*　サイドバー　*/
 /*　---------------------　*/
@@ -404,7 +410,6 @@ justify-content: center;
     max-width: 600px;
 }
 
-/* 商品カード */
 .cart-card {
     background: #fff;
     border-radius: 10px;
@@ -414,20 +419,18 @@ justify-content: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* 商品画像 */
 .cart-img {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+	height: 150px;
+    margin:20px;
     object-fit: cover;
     border-radius: 8px;
 }
 
-/* 商品情報 */
 .cart-info {
     flex: 1;
 }
 
-/* 削除ボタン */
 .delete-btn {
     background-color: var(--aka);
     color: #fff;
@@ -615,10 +618,12 @@ input[type="radio"] {
 		justify-content: space-around;
 		margin:10px;
 		background-color: #f3f7ff;
+		max-width: 500px;
 }
 
 .complete-item img{
 	width: 100px;
 	object-fit: cover;
+	margin-right:20px;
 }
 

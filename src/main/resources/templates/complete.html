@@ -32,7 +32,7 @@
 
 <div>
 	<h3>ご注文内容</h3>
-	
+	<div class="btn-wrap">
 	<div th:each="item : ${items}" class="complete-item">
 
 		<div>
@@ -48,6 +48,7 @@
 		<div>
 
 	</div>
+	</div>
 
 </div>
 
@@ -55,7 +56,7 @@
 
 <h2>合計（税込）：<span th:text="${#numbers.formatInteger(total, 0)}"></span>円</h2>
 
-	お届け先住所：<p th:text="${address}"></p>
+	お届け先住所 <div class="btn-wrap"><div class="complete-item"><p th:text="${address}"></p></div></div> 
 	
 
 <a th:href="@{/top}">
