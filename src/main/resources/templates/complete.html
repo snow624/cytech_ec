@@ -3,16 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>購入完了</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<!--icon-->
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+	<!--fonts awesome-->
+	<link rel="stylesheet"
+	 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+	integrity="sha512-p6H1mF+0Jr5E2lZQ+..."
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!--google fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=DotGothic16&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Rampart+One&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+					  
+
 </head>
 <body>
+	<th:block th:replace="common/header :: header"></th:block>
+	
+	<div id="page-style">
+<h1>		<span class="material-symbols-outlined">
+		deceased
+		</span>Thank you!<span class="material-symbols-outlined">local_florist</span></h1>
 
-<h1>ご購入ありがとうございました！</h1>
+<p>ご購入ありがとうございました！<br>注文が正常に完了しました。</p>
 
-<p>注文が正常に完了しました。</p>
+<div>
+	<h3>ご注文内容</h3>
+	
+	<div th:each="item : ${items}" class="complete-item">
 
-<br>
+		<div>
+	    <img th:src="@{'/img/' + ${item.product.imagePath}}" alt="商品画像">
+		</div>
+		<div>
+	    <div class="item-name"><p th:text="${item.product.productName}"></p></div>
+	    <p>数量：<span th:text="${item.quantity}"></span></p>
+	    <p>
+	        金額：
+	        <span th:text="${#numbers.formatInteger(item.product.price * item.quantity * 1.1, 0)}"></span>円
+	    </p>
+		<div>
 
-<a th:href="@{/top}">TOP画面へ戻る</a>
+	</div>
 
+</div>
+
+</div>
+
+<h2>合計（税込）：<span th:text="${#numbers.formatInteger(total, 0)}"></span>円</h2>
+
+	お届け先住所：<p th:text="${address}"></p>
+	
+
+<a th:href="@{/top}">
+	<div class="btn-wrap"><button type="submit" class="new-btn">TOP画面へ戻る<span class="material-symbols-outlined">
+arrow_circle_left
+</span></button>
+</div>
+</a>
 </body>
 </html>

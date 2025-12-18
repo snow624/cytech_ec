@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+	
+</head>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<body>
+	<div th:fragment="header">
+	<div class="socks"><h1>SOCKSSSSS</h1></div>
+	    <div class="nav" th:if="${session.user != null}">
+	        <p class="youkoso">ようこそ、<span class="username" th:text="${session.user.userName}"></span> さん !</p>
+	        
+	        		
+			<!-- 🔍 商品検索フォーム -->
+			<form th:action="@{/products/search}" method="get" class="search-form">
+
+			    <button type="submit" class="search-btn">
+			        <i class="fa-solid fa-magnifying-glass"></i>
+			    </button>
+				
+				<input type="text" name="keyword" placeholder="商品名で検索" class="search-input">
+
+				<select name="maker" class="search-select">
+							        <option value="">メーカー名</option>
+							        <option value="snow">SNOW</option>
+							        <option value="river">RiveR</option>
+							        <option value="god">GOD</option>
+							        
+							    </select>
+			</form>
+			
+			<div class="nav-icon">
+			 <p><a th:href="@{/products}">
+		
+				<div class="header-icon">		
+					<div>商品一覧</div>
+					<div class="flex-icon">
+								<!-- <div class="moji">PLODUCTS</div> -->
+								<i class="fa-solid fa-socks"></i>
+								</div>
+							</div>
+						</a></p>
+			
+			
+			<p><a th:href="@{/cart}">
+							<div class="header-icon">
+							<div>カート</div>
+							<div class="flex-icon">
+							<!-- <div class="moji">CART</div> -->
+						    <span class="material-symbols-outlined">shopping_cart</span>
+							</div>
+							</div>
+						</a></p>
+						
+						<p><a th:href="@{/logout}">
+										<div class="header-icon">
+										<div>ログアウト</div>
+										<div class="flex-icon">
+											<!-- <div class="moji">LOGOUT</div> -->
+											<span class="material-symbols-outlined">logout</span>
+										</div>
+										</div>
+									</a></p>
+				</div>
+									
+									
+	    </div>
+		
+
+	    <div th:if="${session.user == null}">
+	        <a th:href="@{/login}">ログイン</a>｜
+	        <a th:href="@{/users/add}">新規登録</a>
+	    </div>
+
+	    <hr>
+	</div>
+</body>
+</html>

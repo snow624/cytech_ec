@@ -3,20 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>購入確認</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+	
+	<!--icon-->
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+	<!--fonts awesome-->
+	<link rel="stylesheet"
+	 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+	integrity="sha512-p6H1mF+0Jr5E2lZQ+..."
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!--google fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=DotGothic16&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Rampart+One&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+					  
+
 </head>
+
 <body>
+<th:block th:replace="common/header :: header"></th:block>
 
-<h1>購入内容確認</h1>
+<div id="page-style">
 
-<p>名前：<span th:text="${name}"></span></p>
-<p>住所：<span th:text="${address}"></span></p>
-<p>アパート名：<span th:text="${apartment}"></span></p>
-<p>カード番号：<span th:text="${card}"></span></p>
-<p>合計金額：<span th:text="${total}"></span> 円</p>
+    <h2>購入確認</h2>
 
-<form th:action="@{/purchase/complete}" method="post">
-    <button type="submit">購入確定</button>
-</form>
+	<div class="confirm-box">
+    <!-- 購入者情報 -->
+   <p class="confirm"><span class="confirm-p">お名前</span><span th:text="${purchaseForm.name}"></span>　様</p>
+   <p class="confirm"><span class="confirm-p">お届け先 　〒</span><span th:text="${address}"></span></p>
+	</div>
 
+    <!-- 商品情報 -->
+	<div class="form-section">
+		
+    <h3>商品情報</h3>
+
+	<div th:each="item : ${items}" class="item-box">
+		<div>
+	    <img th:src="@{'/img/' + ${item.product.imagePath}}">
+		</div>
+		<div>
+	    <div class="item-name"><p th:text="${item.product.productName}"></p></div> 
+	    <p>数量：<span th:text="${item.quantity}"></span></p>
+		<p class="tax-cart">1個 ¥<span th:text="${#numbers.formatInteger(item.product.price * 1.1, 0)}"></span></p>
+		</div>
+	</div>
+
+	<h3>
+	合計（税込）：
+	<span th:text="${total}"></span>円
+	</h3>
+	
+	</div>
+
+    <!-- 修正する -->
+	
+    <form th:action="@{/purchase}" method="get">
+        <div class="btn-wrap"><button class="back-btn">修正する</button></div>
+    </form>
+
+    <!-- 購入確定 -->
+    <form th:action="@{/purchase/complete}" method="post">
+        <div class="btn-wrap"><button class="new-btn">購入確定</button></div>
+    </form>
+
+</div>
 </body>
 </html>

@@ -2,31 +2,35 @@
 <html>
 <head>
     <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ログイン</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+
 </head>
 <body>
 
+	<div id="page-style">
 <h1>ログイン</h1>
+
 
 <form th:action="@{/login}" method="post">
 
-    <div>
-        メール：
-        <input type="text" name="email">
+    <div class="text">
+        <input type="text" name="email" placeholder="メールアドレス">
     </div>
-    <br>
-    <div>
-        パスワード：
-        <input type="password" name="password">
+    
+    <div class="text">
+        <input type="password" name="password" placeholder="パスワード">
     </div>
-    <br>
-    <button type="submit">ログイン</button>
+	
+	<div><div class="btn-wrap"><button type="submit" class="login-btn">ログイン</button></div></div>
+    
 </form>
+<div class="error">
+<p th:text="${error}"></p>
+</div>
 
-<p style="color:red;" th:text="${error}"></p>
-
-<br>
-<a th:href="@{/users/add}">新規登録</a>
-
+<a th:href="@{/users/add}"><div class="btn-wrap"><button type="submit" class="add-btn">新規登録</button></div></a>
+</div>
 </body>
 </html>

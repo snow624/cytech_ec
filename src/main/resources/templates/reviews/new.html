@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>口コミ投稿</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+		<!--icon-->
+		<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+		<!--fonts awesome-->
+		<link rel="stylesheet"
+		 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+		integrity="sha512-p6H1mF+0Jr5E2lZQ+..."
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+		<!--google fonts-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=DotGothic16&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Rampart+One&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+						  
+
+</head>
+<body>
+	<th:block th:replace="common/header :: header"></th:block>
+	<div id="page-style">
+
+	
+<h2>口コミ投稿</h2>
+
+<form th:action="@{/reviews/add}" th:object="${review}" method="post" enctype="multipart/form-data">
+    
+	<input type="hidden" th:field="*{product.productId}">
+
+    <div class="kutikomi">
+        
+        <input type="text" name="userName" required placeholder="名前">
+    </div>
+
+    <div class="kutikomi">
+        <label>評価</label>
+        <select name="rating" required>
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★</option>
+            <option value="3">★★★</option>
+            <option value="2">★★</option>
+            <option value="1">★</option>
+        </select>
+    </div>
+
+    <div class="kutikomi">
+        
+		<textarea th:field="*{comment}" maxlength="300"
+		              placeholder="コメント（300文字以内）"></textarea>
+		    <p id="count">0 / 300</p>
+			
+    </div>
+	
+	<div class="kutikomi">
+	        
+		<input type="file" name="imageFile" accept="image/*">
+				
+	</div>
+	
+	<div class="kutikomi">
+		        
+			<input type="email" name="e-mail" placeholder="メールアドレス">
+					
+	</div>
+	
+
+    <div class="btn-wrap"><button type="submit" class="new-btn">投稿する</button></div>
+</form>
+
+<!-- 外部JS -->
+		<script th:src="@{/js/new.js}"></script>
+
+	</div>
+</body>
+</html>

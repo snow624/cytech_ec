@@ -3,39 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <title>購入情報入力</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<!--icon-->
+	<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+	<!--fonts awesome-->
+	<link rel="stylesheet"
+	 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+	integrity="sha512-p6H1mF+0Jr5E2lZQ+..."
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!--google fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=DotGothic16&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Rampart+One&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+					  
+
 </head>
 <body>
-
+	<th:block th:replace="common/header :: header"></th:block>
+	
+	<div id="page-style">
 <h1>購入情報入力</h1>
 
-<form th:action="@{/purchase/confirm}" method="post">
 
-    <div>
-        名前：
-        <input type="text" name="name" required>
+<form th:action="@{/purchase/confirm}" th:object="${purchaseForm}" method="post">
+
+
+	<div class="form-section">
+    <!-- 名前 -->
+    <div class="text">
+        <input th:field="*{name}" placeholder="名前" required>
+        <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
     </div>
-    <br>
+	</div>
+	
+	<div class="form-section">
+    <h3>配送先住所</h3>
 
-    <div>
-        住所：
-        <input type="text" name="address" required>
+	<!-- 登録住所一覧 -->
+	<div th:each="addr : ${addressList}" class="address">
+		<div>
+	    <label th:if="${addr != null}">
+	        <input type="radio" th:field="*{addressId}" th:value="${addr.addressId}">
+			</div>
+			<div>
+	        <div class="address-box">
+	            <p th:text="${addr.postalCode + ' ' + addr.prefecture + addr.city + addr.detail}"></p>
+	        </div>
+	    </label>
+		</div>
+	</div>
+
+	<!-- 新規住所 -->
+	<label class="na-btn">
+	    <input type="radio" th:field="*{addressId}" value="0">
+	    <p>新しい住所を入力する</p>
+	</label>
+
+	<!-- ▼ 新規住所入力フォーム ▼ -->
+	<div id="newAddressForm">
+	    
+	    <!-- 郵便番号 -->
+	    <input th:field="*{postalCode}" placeholder="郵便番号">
+	    <div th:if="${#fields.hasErrors('postalCode')}"
+	         th:errors="*{postalCode}"></div>
+
+	    <!-- 都道府県 -->
+	    <input th:field="*{prefecture}" placeholder="都道府県">
+	    <div th:if="${#fields.hasErrors('prefecture')}"
+	         th:errors="*{prefecture}"></div>
+
+	    <!-- 市区町村 -->
+	    <input th:field="*{city}" placeholder="市区町村">
+	    <div th:if="${#fields.hasErrors('city')}"
+	         th:errors="*{city}"></div>
+
+	    <!-- 番地 -->
+	    <input th:field="*{detail}" placeholder="番地・建物名">
+	    <div th:if="${#fields.hasErrors('detail')}"
+	         th:errors="*{detail}"></div>
+
+	</div>
+	</div>
+
+
+
+	<div class="form-section">
+    <h3>カード情報</h3>
+
+    <!-- 既存カード選択 -->
+    <div th:each="card : ${cardList}" class="card">
+        <label>
+            <input type="radio" th:field="*{cardId}" th:value="${card.cardId}">
+            **** **** **** <span th:text="${card.cardNumber.substring(card.cardNumber.length() - 4)}"></span>
+        </label>
     </div>
-    <br>
 
-    <div>
-        アパート名：
-        <input type="text" name="apartment">
+    <!-- 新規カード選択 -->
+    <label class="na-btn">
+        <input type="radio" th:field="*{cardId}" value="0"><p>新しいカードを登録する</p>
+    </label>
+	<p class="error" th:if="${#fields.hasErrors('cardNumber')}" th:errors="*{cardNumber}"></p>
+	<p class="error" th:if="${#fields.hasErrors('expiryMonth')}" th:errors="*{expiryMonth}"></p>
+	<p class="error" th:if="${#fields.hasErrors('expiryYear')}" th:errors="*{expiryYear}"></p>
+
+    <!-- ▼ 新規カード入力 ▼ -->
+    <div id="newCardForm">
+        <input th:field="*{cardNumber}" maxlength="15" placeholder="カード番号15桁">
+        <input th:field="*{expiryMonth}" maxlength="2" placeholder="MM" class="num">
+        <input th:field="*{expiryYear}" maxlength="2" placeholder="YY" class="num">
     </div>
-    <br>
+	
+	<!-- カードエラー（新規登録時のみ表示） -->
+	<p class="error"
+	   th:if="${purchaseForm.cardId == 0 and #fields.hasErrors('cardNumber')}"
+	   th:errors="*{cardNumber}"></p>
 
-    <div>
-        カード番号：
-        <input type="text" name="card" required>
-    </div>
-    <br>
+	<p class="error"
+	   th:if="${purchaseForm.cardId == 0 and #fields.hasErrors('expiryMonth')}"
+	   th:errors="*{expiryMonth}"></p>
 
-    <button type="submit">確認画面へ</button>
+	<p class="error"
+	   th:if="${purchaseForm.cardId == 0 and #fields.hasErrors('expiryYear')}"
+	   th:errors="*{expiryYear}"></p>
+	   
+	</div>
+
+
+	   <div class="btn-wrap">
+	           <button class="new-btn check">確認画面へ</button>
+	       </div>
+
 </form>
+	
+	
+<!-- 外部JS -->
+		<script th:src="@{/js/purchase.js}"></script>
 
+	
+
+
+</div>
 </body>
 </html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品詳細</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+<!--icon-->
+<link rel="stylesheet"		
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+<!--fonts awesome-->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+integrity="sha512-p6H1mF+0Jr5E2lZQ+..."
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!--google fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=DotGothic16&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Rampart+One&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+				  
+</head>
+<body>
+	<th:block th:replace="common/header :: header"></th:block>
+	
+	<div id="page-style">
+		
+		
+		<div class="detail-container">
+			
+			<div class="detail-main">
+		<!-- 商品画像 -->
+		<p><span th:text="${product.makerName}"></span></p>
+		<h1 th:text="${product.productName}"></h1>
+		<img th:src="@{'/img/' + ${product.imagePath}}" alt="商品画像">
+					
+		<div class="price-box">
+		<!-- 税抜き価格 -->
+		<p class="price">¥<span th:text="${product.price}"></span><span class="tax-font"> +Tax</span></p>
+
+		<!-- 税込み価格 -->
+		<p class="price-tax">(¥<span th:text="${#numbers.formatInteger(product.price * 1.1, 0)}"></span> 税込)</p>
+		</div>
+		
+		<!-- 数量選択 -->
+		<div class="stock">
+		    <label>数量</label>
+		    <select name="quantity" id="qtySelect">
+		        <option th:each="i : ${#numbers.sequence(1, product.stock)}"
+		                th:value="${i}"
+		                th:text="${i}">
+		        </option>
+		    </select>
+			<p class="zaiko">[ 残り <span th:text="${product.stock}"></span> 個 ]</p>
+			<p th:if="${product.stock == 0}" class="sold-out">【在庫なし】</p>
+		</div>
+
+		
+
+		<!-- 今すぐ購入 -->
+		<form th:action="@{/cart/add}" method="post" class="single-buy-form">
+		    <input type="hidden" name="productId" th:value="${product.productId}">
+		    <input type="hidden" name="quantity" id="singleBuyQuantity">
+		    <input type="hidden" name="directBuy" value="true">
+		    <div class="btn-wrap"><button type="submit" class="single-buy-btn">今すぐ購入</button></div> 
+		</form>
+
+		<!-- 外部JS -->
+		<script th:src="@{/js/detail.js}"></script>
+		
+		<div class="reviews-box">
+		<h2>口コミ</h2>
+		<div th:if="${#lists.isEmpty(reviews)}">
+				<p>口コミはありません</p>
+			</div>
+
+			<div th:if="${!#lists.isEmpty(reviews)}">
+
+				<div th:each="review : ${reviews}" class="review-box">
+
+					<!-- ユーザー名と投稿日 -->
+
+					<p>
+						<strong th:text="${review.userName}"></strong>
+								            <span th:text="${#temporals.format(review.createdAt, 'yyyy/MM/dd')}"></span>
+								        </p>
+
+								        <!-- 評価（星表示） -->
+										<p class="rating-stars">
+										    <span th:each="i : ${#numbers.sequence(1,5)}"
+										          th:text="${i <= review.rating} ? '★' : '☆'">
+										    </span>
+										</p>
+
+								        <!-- コメント -->
+								        <p th:text="${review.comment}"></p>
+
+								        <hr>
+									</div>
+								</div>
+						
+
+								<a th:href="@{/reviews/new(productId=${product.productId})}">		
+								<div class="btn-wrap">
+									    <button type="submit" class="new-btn">口コミを投稿する</button>
+								</div>
+								</a>
+								
+
+							</form>
+							</div>
+							</div>
+							
+							<!-- サイドバー -->
+							<div class="detail-sidebar">
+
+							   
+							        <div class="price-box">
+							            <p class="price">
+							                ¥<span th:text="${product.price}"></span>
+							                <span class="tax-font">+Tax</span>
+							            </p>
+
+							            <p class="price-tax">
+							                (¥<span th:text="${#numbers.formatInteger(product.price * 1.1, 0)}"></span> 税込)
+							            </p>
+							        </div>
+
+
+									<!-- 数量選択 -->
+											<div class="stock">
+											    <label>数量</label>
+											    <select name="quantity" id="qtySelect">
+											        <option th:each="i : ${#numbers.sequence(1, product.stock)}"
+											                th:value="${i}"
+											                th:text="${i}">
+											        </option>
+											    </select>
+												<p class="zaiko">[ 残り <span th:text="${product.stock}"></span> 個 ]</p>
+												<p th:if="${product.stock == 0}" class="sold-out">【在庫なし】</p>
+											</div><br>
+
+										<!-- カートに入れる -->
+												<form th:action="@{/cart/add}" method="post">
+												    <input type="hidden" name="productId" th:value="${product.productId}">
+												    <input type="hidden" name="quantity" value="1">
+												    <div class="btn-wrap"><button type="submit" class="select-btn">カートに入れる
+														<i class="fa-solid fa-cart-arrow-down"></i>
+													</button></div>
+												</form>
+							        </form>
+									
+
+							    </div>
+							</div>
+
+</body>
+</html>
+

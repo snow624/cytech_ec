@@ -21,17 +21,8 @@ public class User {
     @Column(name = "user_name", nullable = false)
     private String userName;
 
-    @Column(name = "user_name_kana", nullable = false)
-    private String userNameKana;
-
     @Column(name = "email", nullable = false)
     private String email;
-
-    @Column(name = "phone", nullable = false)
-    private String phone;
-
-    @Column(name = "user_address", nullable = false)
-    private String userAddress;
 
     @Column(name = "passwords", nullable = false)
     private String passwords;
@@ -41,6 +32,7 @@ public class User {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
 
     // ===== getter / setter =====
 
@@ -60,14 +52,6 @@ public class User {
         this.userName = userName;
     }
 
-    public String getUserNameKana() {
-        return userNameKana;
-    }
-
-    public void setUserNameKana(String userNameKana) {
-        this.userNameKana = userNameKana;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -76,21 +60,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getUserAddress() {
-        return userAddress;
-    }
-
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress;
-    }
 
     public String getPasswords() {
         return passwords;

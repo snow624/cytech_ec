@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>住所一覧</title>
+</head>
+
+<body>
+<h2>登録済み住所</h2>
+
+<div th:if="${#lists.isEmpty(addresses)}">
+    <p>住所は登録されていません</p>
+</div>
+
+<div th:each="addr : ${addresses}">
+    <p>
+        〒<span th:text="${addr.postalCode}"></span>
+        <br>
+        <span th:text="${addr.prefecture}"></span>
+        <span th:text="${addr.city}"></span>
+        <span th:text="${addr.detail}"></span>
+        <br>
+        電話番号：<span th:text="${addr.phoneNumber}"></span>
+    </p>
+    <hr>
+</div>
+
+<a th:href="@{/address/add}"><button>住所を追加する</button></a>
+<a th:href="@{/mypage}"><button>戻る</button></a>
+
+</body>
+</html>

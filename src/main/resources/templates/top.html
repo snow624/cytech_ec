@@ -3,16 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>TOP画面</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+<!--icon-->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+<!--fonts awesome-->
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+integrity="sha512-p6H1mF+0Jr5E2lZQ+..."
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!--google fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=DotGothic16&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Rampart+One&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+				  
+
 </head>
 <body>
+	
+	<th:block th:replace="common/header :: header"></th:block>
+	
+	<div id="page-style">
+<h1>SALE</h1>
+<a th:href="@{/products}"><img th:src="@{/img/socks00.jpg}"></a>
 
-<h1>TOP画面</h1>
+<div class="flex-btn">
+<!--<a th:href="@{/users}"><button type="submit" class="new-btn">ユーザー一覧へ</button></a> -->
+<a th:href="@{/products}"><div class="btn-wrap"><button type="submit" class="new-btn">商品一覧へ</button></div></a>
+</div>
 
-<p>ログイン成功！</p>
-
-<a th:href="@{/users}">ユーザー一覧へ</a>
-<a th:href="@{/products}">商品一覧へ</a>
-
-
+</div>
 </body>
 </html>

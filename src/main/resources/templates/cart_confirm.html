@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>カート</title>
+    <title>カート詳細</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
@@ -19,7 +19,15 @@
 <th:block th:replace="common/header :: header"></th:block>
 
 <div id="page-style">
-<h1>カート</h1>
+	
+	
+	
+<h1>カート詳細</h1>
+
+<div class="cart-confirm-wrapper">
+
+  <!-- 左：カート一覧 -->
+  <div class="cart-main">
 
 <div th:if="${message}" class="flash-message">
     <p th:text="${message}"></p>
@@ -83,15 +91,23 @@
         <div class="btn-wrap"><button type="button" class="back-btn">買い物を続ける</button></div> 
     </a>
 	
-	<a th:href="@{/cart/confirm}">
-		        <div class="btn-wrap"><button type="button" class="update-btn">カート内容を確認</button></div>
-		    </a>
-
-	<form th:action="@{/purchase/start-from-cart}" method="post">
-	    <div class="btn-wrap"><button type="submit" class="new-btn">購入へ進む</button></div> 
-	</form>
-	
 </div>
+
+</div>
+
+  <!-- 右：サイドバー -->
+  <aside class="cart-sidebar">
+	
+      <p>小計：¥<span th:text="${subtotal}"></span></p>
+      <p>合計（税込）：¥<span th:text="${total}"></span></p>
+
+      <form th:action="@{/purchase}" method="get">
+          <div class="btn-wrap"><button class="new-btn">購入に進む</button></div>
+      </form>
+  </aside>
+
+</div>
+
 
 </div>
 </body>

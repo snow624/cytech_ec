@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品一覧</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+	<!--icon-->
+	<link rel="stylesheet"
+	      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+		  <!--fonts awesome-->
+		      <link rel="stylesheet"
+		           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+		          integrity="sha512-p6H1mF+0Jr5E2lZQ+..."
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!--google fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=DotGothic16&family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Rampart+One&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+					  
+
+</head>
+
+<body>
+	<th:block th:replace="common/header :: header"></th:block>
+
+<div id="page-style">
+<h1>Item</h1>
+<div class="product-grid">
+    <div class="product-card" th:each="product : ${products}">
+        
+		<p class="maker" th:text="${product.makerName}"></p>
+		
+        <h3 th:text="${product.productName}"></h3>
+		
+		<a th:href="@{/products/detail(id=${product.productId})}">
+		            <img class="product-img" 
+		                 th:src="@{'/img/' + ${product.imagePath}}" 
+		                 alt="商品画像">
+		        </a>
+
+       <div class="tax-flex">
+		<!-- 税抜き価格 -->
+			    <p>¥<span th:text="${product.price}"></span><span class="tax-font">+Tax</span></p>
+        <!-- 税込み価格 -->
+        <p class="tax">(¥<span th:text="${#numbers.formatInteger(product.price * 1.1, 0)}"></span>)</p>
+		
+		</div>
+    </div>
+</div>
+
+
+<br>
+<a href="/cytech_ec/top"> <div class="btn-wrap"><button type="submit" class="back-btn">TOPへ戻る</button></div></a>
+</div>
+
+</body>
+</html>

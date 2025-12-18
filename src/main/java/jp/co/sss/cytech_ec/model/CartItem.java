@@ -5,6 +5,7 @@ public class CartItem {
 
     private Product product;
     private int quantity;
+    private int subtotal;
 
     public CartItem(Product product, int quantity) {
         this.product = product;
@@ -20,6 +21,16 @@ public class CartItem {
     }
 
     public int getSubtotal() {
-        return product.getPrice() * quantity;
+        int taxPrice = (int) Math.round(product.getPrice() * 1.1); // 税込価格
+        return taxPrice * quantity;
+    }
+
+    
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setSubtotal(int subtotal) {
+        this.subtotal = subtotal;
     }
 }

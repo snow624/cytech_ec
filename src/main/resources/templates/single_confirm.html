@@ -1,0 +1,13 @@
+<h1>単品購入確認</h1>
+
+<p>商品名：<span th:text="${product.productName}"></span></p>
+<p>数量：<span th:text="${quantity}"></span></p>
+<p>税込金額：¥<span th:text="${taxIncluded}"></span></p>
+
+<form th:action="@{/purchase/complete}" method="post">
+    <input type="hidden" name="productId" th:value="${product.productId}">
+    <input type="hidden" name="quantity" th:value="${quantity}">
+    <button type="submit">購入を確定する</button>
+</form>
+
+<a th:href="@{/products}">戻る</a>

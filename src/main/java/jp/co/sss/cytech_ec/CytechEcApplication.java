@@ -3,11 +3,9 @@ package jp.co.sss.cytech_ec;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "jp.co.sss.cytech_ec")
 public class CytechEcApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(CytechEcApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(CytechEcApplication.class, args);
+    }
 }
