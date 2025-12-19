@@ -39,6 +39,7 @@ button{
 			gap: 8px;    
 			color: var(--kuro);
 			transition: 0.3s;
+			cursor: pointer;
 
 }
 button:hover{
@@ -51,6 +52,7 @@ input{
 	font-size: 10px;
 	padding: 5px;
 	border-radius: 5px;
+	
 }
 
 textarea{
@@ -115,8 +117,11 @@ img:hover{
 /*　---------------------　*/
 /*  header　*/
 /*　---------------------　*/
+
+
 .material-symbols-outlined {
 	padding: 0;
+	
 	
   font-variation-settings:
   'FILL' 0,
@@ -124,41 +129,57 @@ img:hover{
   'GRAD' 0,
   'opsz' 24
 }
+
 .nav{
 	padding: 5px 50px 0px 50px;
 
 }
 .nav p{
-	font-size: 10px;
+	font-size: 14px;
 	padding: 5px 10px;
+	text-wrap: nowrap;
 }
-.header-icon{
-	
-	font-size: 8px;
+
+
+.username{
+	font-weight: bold;
+	font-size: 24px;
+}
+
+.header-icon p{
+	font-size: 10px;
+	text-wrap: nowrap;
+	padding: 0;
 }
 .nav-icon{
 display: flex;
 justify-content: center;	
-padding: 20px 0;
-}
-
-.username{
-	font-weight: bold;
-	font-size: 16px;
+padding: 10px 0;
+margin-right: 60px;
 }
 
 i{
-	font-size: 20px;
-	padding-top: 2px;
+	font-size: 30px;
+	transition: 0.3s;
+}
+
+i:hover{
+	color: var(--midori);
 }
 /*SOCKS　STOREロゴ*/
 .socks{
 	color: var(--midori);
-	margin: 0 50px;
 	font-family: "BBH Bartle", sans-serif;
 	  font-weight: 400;
 	  font-style: normal;
 }
+
+.socks h1{
+	font-size: 40px;
+	margin-bottom: 0px;
+	
+	}
+	
 
  .search-form {
      display: flex;
@@ -168,14 +189,16 @@ i{
  }
 
  .search-input, .search-select {
-     padding: 5px;
-     font-size: 12px;
+     padding: 10px;
+     font-size: 14px;
  }
  .search-select {
-	border-radius: 5px;
+	border-radius: 20px;
 	background-color: var(--ao);
-	border: none;
+	border: 1px solid var(--midori);
 	margin:0 0 0 20px;
+	padding: 11px 20px;
+	cursor: pointer;
 	
  }
  .search-input{
@@ -190,17 +213,31 @@ i{
      background: var(--kuro);
      color: white;
      border: none;
-     padding: 8px;
+     padding: 12px;
      cursor: pointer;
 	 width: 50px;
 	 border-radius: 20px 0 0 20px;
 	 margin:0 -5px 0 0;
+	 
 	
  }
 
  .search-btn i {
-     font-size: 14px;
+     font-size: 18px;
  }
+ 
+ .nav-box{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+	
+ }
+ 
+ .youkoso{
+	margin-left: 50px;
+ }
+
 
 /*　---------------------　*/
 /*　TOP　*/
@@ -563,21 +600,25 @@ input[type="radio"] {
 /*　---------------------　*/
 /*　購入確認画面　　*/
 /*　---------------------　*/
-.confirm-box{
+table{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	
+	border-collapse: separate; 
+	  border-spacing: 20px;
 }
-.confirm{
-	width: 500px;
-    background-color: #FFFFFF;
-	padding: 10px 20px;
-	border-radius: 8px;
-	max-width: 600px;
-    text-align: left;
-	
+th,td{
+	text-align: center;
+	padding: 16px 50px;
+	border-radius: 30px;
+	background-color: #FFFFFF;
+	font-size: 12px;
+	text-wrap: nowrap;
 }
+td{
+	font-size: 14px;
+}
+
 .confirm-p{
 	color: var(--kuro);
 	font-size: 12px;
@@ -625,5 +666,9 @@ input[type="radio"] {
 	width: 100px;
 	object-fit: cover;
 	margin-right:20px;
+}
+.thanks{
+	font-size: 70px;
+	color: var(--aka);
 }
 

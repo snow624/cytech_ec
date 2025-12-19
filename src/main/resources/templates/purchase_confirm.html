@@ -28,12 +28,11 @@
 <div id="page-style">
 
     <h2>購入確認</h2>
-
-	<div class="confirm-box">
-    <!-- 購入者情報 -->
-   <p class="confirm"><span class="confirm-p">お名前</span><span th:text="${purchaseForm.name}"></span>　様</p>
-   <p class="confirm"><span class="confirm-p">お届け先 　〒</span><span th:text="${address}"></span></p>
-	</div>
+	
+	<table class="confirm-box">
+		<tr class="confirm"><th>お名前</th><td><span th:text="${purchaseForm.name}"></span>　様</td></tr>
+		<tr class="confirm"><th>お届け先</th><td>〒<span th:text="${address}"></span></span></td></tr>
+	</table>
 
     <!-- 商品情報 -->
 	<div class="form-section">

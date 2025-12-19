@@ -5,13 +5,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	
 <body>
-	<div th:fragment="header">
-	<div class="socks"><h1>SOCKSSSSS</h1></div>
+	<div th:fragment="header" id="header">
+	<div class="socks"><h1>SOCKSS<i class="fa-solid fa-socks"></i>SSS</h1></div>
 	    <div class="nav" th:if="${session.user != null}">
+			
+			<div class="nav-box">
+			<div>
 	        <p class="youkoso">ようこそ、<span class="username" th:text="${session.user.userName}"></span> さん !</p>
-	        
-	        		
-			<!-- 🔍 商品検索フォーム -->
+			</div>
+	        	
+			
+			<div>	
+			<!-- 商品検索フォーム -->
 			<form th:action="@{/products/search}" method="get" class="search-form">
 
 			    <button type="submit" class="search-btn">
@@ -29,13 +34,15 @@
 							    </select>
 			</form>
 			
+			</div>
+			
 			<div class="nav-icon">
 			 <p><a th:href="@{/products}">
 		
 				<div class="header-icon">		
-					<div>商品一覧</div>
+					<div><p>商品一覧</p></div>
 					<div class="flex-icon">
-								<!-- <div class="moji">PLODUCTS</div> -->
+								
 								<i class="fa-solid fa-socks"></i>
 								</div>
 							</div>
@@ -44,26 +51,27 @@
 			
 			<p><a th:href="@{/cart}">
 							<div class="header-icon">
-							<div>カート</div>
+							<div><p>カート</p></div>
 							<div class="flex-icon">
-							<!-- <div class="moji">CART</div> -->
-						    <span class="material-symbols-outlined">shopping_cart</span>
+						    <i class="fa-solid fa-cart-shopping"></i>
 							</div>
 							</div>
 						</a></p>
 						
 						<p><a th:href="@{/logout}">
 										<div class="header-icon">
-										<div>ログアウト</div>
+										<div><p>ログアウト</p></div>
 										<div class="flex-icon">
 											<!-- <div class="moji">LOGOUT</div> -->
-											<span class="material-symbols-outlined">logout</span>
+											<i class="fa-solid fa-arrow-right-from-bracket"></i>
 										</div>
 										</div>
 									</a></p>
 				</div>
 									
-									
+				</div>		
+				
+							
 	    </div>
 		
 

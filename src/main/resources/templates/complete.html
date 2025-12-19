@@ -24,9 +24,13 @@
 	<th:block th:replace="common/header :: header"></th:block>
 	
 	<div id="page-style">
-<h1>		<span class="material-symbols-outlined">
-		deceased
-		</span>Thank you!<span class="material-symbols-outlined">local_florist</span></h1>
+<h1 class="thanks">		
+	<i class="fa-solid fa-seedling"></i>
+	<span class="material-symbols-outlined">deceased</span>
+		THANK YOU!
+	<span class="material-symbols-outlined">local_florist</span>
+	<i class="fa-solid fa-seedling"></i>
+</h1>
 
 <p>ご購入ありがとうございました！<br>注文が正常に完了しました。</p>
 
@@ -56,9 +60,10 @@
 
 <h2>合計（税込）：<span th:text="${#numbers.formatInteger(total, 0)}"></span>円</h2>
 
-	お届け先住所 <div class="btn-wrap"><div class="complete-item"><p th:text="${address}"></p></div></div> 
+	<table class="confirm-box">
+	<tr class="confirm"><th>お届け先住所</th><td>〒<span th:text="${address}"></span></span></td></tr>
+	</table>
 	
-
 <a th:href="@{/top}">
 	<div class="btn-wrap"><button type="submit" class="new-btn">TOP画面へ戻る<span class="material-symbols-outlined">
 arrow_circle_left
