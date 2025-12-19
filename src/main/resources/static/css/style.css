@@ -671,4 +671,8 @@ td{
 	font-size: 70px;
 	color: var(--aka);
 }
-
+.item-wrap{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
